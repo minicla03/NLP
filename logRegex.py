@@ -11,9 +11,16 @@ Estrazione della dimensione della risposta: Trova la dimensione della risposta.
 with open('logFile.txt', 'r') as file:
     log = file.read()
 
-#partiamo dall'assunzione che siano corretti
+#assumiamo  che siano corretti
 ip_pt=r"((\d{1,3}\.){3}\d{1,3})"
 ips=re.finditer(ip_pt,log)
 for match in ips:
     print(match.group())
 
+timestamp_pt=r"\d\d/\D\D\D/\d\d\d\d:\d\d:\d\d:\d\d\s\+\d\d\d\d"
+tss=re.findall(timestamp_pt,log)
+print(tss)
+
+method_pt=r"^(GET|POST|PUT|DELETE)\s(/\w+)+"
+m=re.match(method_pt,log,re.MULTILINE)
+print(m)
